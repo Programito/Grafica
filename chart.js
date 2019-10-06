@@ -105,26 +105,26 @@ function cargarTable(objJson,freq){
     <th colspan="9" class="hdr">Moviments partida</th>
 </tr>
 <tr nowrap bgcolor="#CCCCFF">
-    <th class="freq">Moviments</th>
-    <th class="freq">&lt; ${(10/18 * 2).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 2).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 3).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 4).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 5).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 6).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 7).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 8).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 9).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 10).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 11).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 12).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 13).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 14).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 15).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 16).toFixed(2)}</th>
-    <th class="freq">${(10/18 * 17).toFixed(2)}</th>
-    <th class="freq">&gt;${(10/18 * 17).toFixed(2)}</th>
-    <th class="freq">Total</th>
+    <th class="${freq}">Moviments</th>
+    <th class="${freq}">&lt; ${(10/18 * 2).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 2).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 3).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 4).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 5).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 6).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 7).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 8).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 9).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 10).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 11).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 12).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 13).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 14).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 15).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 16).toFixed(2)}</th>
+    <th class="${freq}">${(10/18 * 17).toFixed(2)}</th>
+    <th class="${freq}">&gt;${(10/18 * 17).toFixed(2)}</th>
+    <th class="${freq}">Total</th>
 </tr>
 <tr nowrap>
     <td class="dir">Moviment1</td>
