@@ -21,7 +21,7 @@ function recargarAll(){
 
 function recargar(container,freq){
 
-    var objJson = createJson();
+    var objJson = createJson(container);
     cargarTable(objJson,freq);
     if(!estil){
         CreateHighcharts(objJson,freq,container);
@@ -33,7 +33,7 @@ function recargar(container,freq){
 }
 
 
-function createJson(){
+function createJson(container){
 
     var jsonString = `{ "user": "${randomString()}",
                     "timestamp": "2019-10-05 T 10:20 UTC",
@@ -47,12 +47,10 @@ function createJson(){
                         {"moviment5": ${random10()} },
                         {"moviment6": ${random10()} }
                     ]}`;
-    
-    writeTextArea(jsonString);
-    //console.log(jsonString);
-    //console.log(JSON.parse(jsonString).IP);
+    if(container === "container"){
+        writeTextArea(jsonString);
+    }
     return(JSON.parse(jsonString));
-    // console.log(JSON.parse(jsonString).partida[0].moviment1[2]); 
     // timestamp, IP, pais, llengua, dades del jugador,
 }
 
