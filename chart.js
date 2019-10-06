@@ -17,88 +17,22 @@ function recargarAll(){
                             recargar("container5","freq5");}
                 }, temps);
 }
+
 function recargar(container,freq){
 
     var objJson = createJson();
     cargarTable(objJson,freq);
 
-    var title = "Nuevo";
-    var subtitle = 'Source: or.water.usgs.gov2';
-    Highcharts.chart(container, {
-        data: {
-            table: freq,
-            startRow: 1,
-            endRow: 7,
-            endColumn: 10
-        },
-    
-        chart: {
-            polar: true,
-            type: 'column',
-           
-        },
-    
-        title: {
-            text: title
-        },
-    
-        subtitle: {
-            text: subtitle
-        },
-    
-        pane: {
-            size: tamany
-        },
-    
-        legend: {
-            align: 'right',
-            verticalAlign: 'top',
-            y: 100,
-            layout: 'vertical'
-        },
-    
-        xAxis: {
-            tickmarkPlacement: 'on'
-        },
-    
-        yAxis: {
-            min: 1,
-            endOnTick: false,
-            showLastLabel: true,
-            title: {
-                text: 'Frequency (%)'
-            },
-            labels: {
-                formatter: function () {
-                    return this.value + '%';
-                }
-            },
-            reversedStacks: false
-        },
-    
-        tooltip: {
-            valueSuffix: '%'
-        },
-    
-        plotOptions: {
-            series: {
-                stacking: 'normal',
-                shadow: false,
-                groupPadding: 0,
-                pointPlacement: 'on'
-            }
-        }
-    });
+    CreateHighcharts(objJson,freq,container);
 
-    
-    
 }
 
 
 function createJson(){
-    var jsonString = '{"timestamp": "2019-10-05 T 10:20 UTC","IP": "190.162.170.29","Pais": "Andorra"}';
-    jsonString = `{"timestamp": "2019-10-05 T 10:20 UTC",
-                    "IP": "190.162.170.29",
+
+    var jsonString = `{ "user": "${randomString()}",
+                    "timestamp": "2019-10-05 T 10:20 UTC",
+                    "IP": "${randomIP()}",
                     "pais": "${randomCountry()}",
                     "partida": [
                         {"moviment1": ${random10()} },
@@ -111,7 +45,7 @@ function createJson(){
     
     writeTextArea(jsonString);
     //console.log(jsonString);
-    //console.log(JSON.parse(jsonString));
+    //console.log(JSON.parse(jsonString).IP);
     return(JSON.parse(jsonString));
     // console.log(JSON.parse(jsonString).partida[0].moviment1[2]); 
     // timestamp, IP, pais, llengua, dades del jugador,
@@ -136,6 +70,23 @@ function random10(){
     return randomArr;
     
 }
+
+// random string 
+function randomString() {
+    var random = Math.random() * (15 -8) + +8;
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < random; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
+
+ // random ip
+ function randomIP(){
+     return (Math.floor(Math.random() * 255) + 1)+"."+(Math.floor(Math.random() * 255) + 0)+"."+(Math.floor(Math.random() * 255) + 0)+"."+(Math.floor(Math.random() * 255) + 0);
+ }
 
 // random pais
 function randomCountry(){
@@ -232,27 +183,36 @@ function stop(){
 }
 
 function modificarDades(){
-    if(document.getElementById("tempsInput").value != "Introdueix segons per carregar:" ){
+    if(document.getElementById("tempsInput").value != "Introdueix segons per carregar:" && document.getElementById("tempsInput").value != ""  ){
         temps=  parseInt(document.getElementById("tempsInput").value) * 1000;
         clearInterval(interval);
         console.log(`El interval es ${temps}ms`);
         recargarAll();
     }
-    if(document.getElementById("tamanyInput").value != "Introdueix el % de tamany" ){
+    if(document.getElementById("tamanyInput").value != "Introdueix el % de tamany" && document.getElementById("tamanyInput").value != ""  ){
         tamany=  parseInt(document.getElementById("tamanyInput").value) + "%";
         console.log(`El % de tamany es ${tamany}`);
     }
 }
 
+
+
 // modifica el container amb les dades del area text
 function modificar(){
     texto= document.getElementById("textArea").value;
-    
-    cargarTable(JSON.parse(texto),"freq");
+    var objJson = JSON.parse(texto);
+    cargarTable(objJson,"freq");
+    CreateHighcharts(objJson,"freq", "container");
 
-    var title = "Nuevo2";
-    var subtitle = 'Source: or.water.usgs.gov2';
-    Highcharts.chart("container", {
+    console.log("modificado");
+
+}
+
+function CreateHighcharts(objJson,freq, container){
+    var title = objJson.user;
+    var subtitle = `${objJson.IP} (${objJson.pais})`;
+
+    Highcharts.chart(container, {
         data: {
             table: freq,
             startRow: 1,
@@ -317,7 +277,5 @@ function modificar(){
             }
         }
     });
-
-    console.log("modificado");
 
 }
