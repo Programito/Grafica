@@ -1,6 +1,6 @@
 var temps = 10000;
 var activo= true;
-var tamany = "60%";
+var tamany = "75%";
 var interval;
 var estil = false;
 function recargarAll(){
@@ -63,9 +63,9 @@ function random(){
 // 10 randoms para el json
 function random10(){
     var randomArr = "[";
-    for(var i=0; i< 10; i++){
+    for(var i=0; i< 18; i++){
         randomArr += random();
-        if(i<9){
+        if(i<17){
             randomArr += ',';
         }
     }
@@ -106,16 +106,24 @@ function cargarTable(objJson,freq){
 </tr>
 <tr nowrap bgcolor="#CCCCFF">
     <th class="freq">Moviments</th>
-    <th class="freq">&lt; 2</th>
-    <th class="freq">2</th>
-    <th class="freq">3</th>
-    <th class="freq">4</th>
-    <th class="freq">5</th>
-    <th class="freq">6</th>
-    <th class="freq">7</th>
-    <th class="freq">8</th>
-    <th class="freq">9</th>
-    <th class="freq">&gt; 9</th>
+    <th class="freq">&lt; ${(10/18 * 2).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 2).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 3).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 4).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 5).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 6).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 7).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 8).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 9).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 10).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 11).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 12).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 13).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 14).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 15).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 16).toFixed(2)}</th>
+    <th class="freq">${(10/18 * 17).toFixed(2)}</th>
+    <th class="freq">&gt;${(10/18 * 17).toFixed(2)}</th>
     <th class="freq">Total</th>
 </tr>
 <tr nowrap>
@@ -163,7 +171,7 @@ function calTotal(movArray){
 // calcula los 10 valores para el nodo
 function crearNodos(movArray){
     var nodo= "";
-    for(var i=0;i<10;i++){
+    for(var i=0;i<18;i++){
         nodo += `<td class="data"> ${movArray[i]}</td>`
     }
     return nodo;
@@ -220,7 +228,7 @@ function CreateHighcharts(objJson,freq, container){
             table: freq,
             startRow: 1,
             endRow: 7,
-            endColumn: 10
+            endColumn: 18
         },
     
         chart: {
@@ -293,7 +301,7 @@ Highcharts.chart(container, {
         table: freq,
         startRow: 1,
         endRow: 7,
-        endColumn: 10
+        endColumn: 18
     },
 
     colors: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066',
