@@ -2,6 +2,7 @@ var temps = 10000;
 var activo= true;
 var tamany = "60%";
 var interval;
+var estil = false;
 function recargarAll(){
     recargar("container","freq");
     recargar("container2","freq2");
@@ -22,8 +23,12 @@ function recargar(container,freq){
 
     var objJson = createJson();
     cargarTable(objJson,freq);
-
-    CreateHighcharts(objJson,freq,container);
+    if(!estil){
+        CreateHighcharts(objJson,freq,container);
+    }else {
+        CreateHighcharts2(objJson,freq,container);
+    }
+    
 
 }
 
@@ -277,5 +282,237 @@ function CreateHighcharts(objJson,freq, container){
             }
         }
     });
+
+}
+
+function CreateHighcharts2(objJson,freq, container){
+
+    var title = objJson.user;
+    var subtitle = `${objJson.IP} (${objJson.pais})`;
+
+Highcharts.chart(container, {
+    data: {
+        table: freq,
+        startRow: 1,
+        endRow: 7,
+        endColumn: 10
+    },
+
+    colors: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066',
+        '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+
+    chart: {
+        polar: true,
+        type: 'column',
+        backgroundColor: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+            stops: [
+                [0, '#2a2a2b'],
+                [1, '#3e3e40']
+            ]
+        },
+        style: {
+            fontFamily: '\'Unica One\', sans-serif'
+        },
+        plotBorderColor: '#606063'
+    },
+
+    title: {
+        text: title,
+        style: {
+            color: '#E0E0E3',
+            textTransform: 'uppercase',
+            fontSize: '20px'
+        }
+    },
+
+    subtitle: {
+        text: subtitle,
+        style: {
+            color: '#E0E0E3',
+            textTransform: 'uppercase'
+        }
+    },
+
+    pane: {
+        size: tamany
+    },
+
+    legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        y: 100,
+        layout: 'vertical',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        itemStyle: {
+            color: '#E0E0E3'
+        },
+        itemHoverStyle: {
+            color: '#FFF'
+        },
+        itemHiddenStyle: {
+            color: '#606063'
+        },
+        title: {
+            style: {
+                color: '#C0C0C0'
+            }
+        }
+    },
+
+    xAxis: {
+        tickmarkPlacement: 'on',
+        gridLineColor: '#707073',
+        labels: {
+            style: {
+                color: '#E0E0E3'
+            }
+        },
+        lineColor: '#707073',
+        minorGridLineColor: '#505053',
+        tickColor: '#707073',
+        title: {
+            style: {
+                color: '#A0A0A3'
+
+            }
+        }
+    },
+
+    yAxis: {
+        min: 1,
+        endOnTick: false,
+        showLastLabel: true,
+        title: {
+            text: 'Frequency (%)'
+        },
+        labels: {
+            formatter: function () {
+                return this.value + '%';
+            }
+        },
+        reversedStacks: false,
+        gridLineColor: '#707073',
+        labels: {
+            style: {
+                color: '#E0E0E3'
+            }
+        },
+        lineColor: '#707073',
+        minorGridLineColor: '#505053',
+        tickColor: '#707073',
+        tickWidth: 1,
+        title: {
+            style: {
+                color: '#A0A0A3'
+            }
+        }
+    },
+
+    tooltip: {
+        valueSuffix: '%',
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        style: {
+            color: '#F0F0F0'
+        }
+    },
+
+    credits: {
+        style: {
+            color: '#666'
+        }
+    },
+
+    drilldown: {
+        activeAxisLabelStyle: {
+            color: '#F0F0F3'
+        },
+        activeDataLabelStyle: {
+            color: '#F0F0F3'
+        }
+    },
+
+    labels: {
+        style: {
+            color: '#707073'
+        }
+    },
+
+
+
+    navigation: {
+        buttonOptions: {
+            symbolStroke: '#DDDDDD',
+            theme: {
+                fill: '#505053'
+            }
+        },
+        handles: {
+            backgroundColor: '#666',
+            borderColor: '#AAA'
+        },
+        outlineColor: '#CCC',
+        maskFill: 'rgba(255,255,255,0.1)',
+        series: {
+            color: '#7798BF',
+            lineColor: '#A6C7ED'
+        },
+        xAxis: {
+            gridLineColor: '#505053'
+        }
+    },
+
+    scrollbar: {
+        barBackgroundColor: '#808083',
+        barBorderColor: '#808083',
+        buttonArrowColor: '#CCC',
+        buttonBackgroundColor: '#606063',
+        buttonBorderColor: '#606063',
+        rifleColor: '#FFF',
+        trackBackgroundColor: '#404043',
+        trackBorderColor: '#404043'
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal',
+            shadow: false,
+            groupPadding: 0,
+            pointPlacement: 'on',
+            dataLabels: {
+                color: '#F0F0F3',
+                style: {
+                    fontSize: '13px'
+                }
+            },
+            marker: {
+                lineColor: '#333'
+            }
+        },
+        boxplot: {
+            fillColor: '#505053'
+        },
+        candlestick: {
+            lineColor: 'white'
+        },
+        errorbar: {
+            color: 'white'
+        }
+    }
+});
+}
+
+
+function changeStyle() {
+   estil = !estil;
+   if(!estil){
+        document.getElementById("styleButton").innerText="Estil Dark Unica";
+        document.getElementById("styleButton").className= "btn btn-dark text-white";
+    }else{
+        document.getElementById("styleButton").innerText="Estil Default";
+        document.getElementById("styleButton").className= "btn btn-primary text-dark";
+    }
+
+    clearInterval(interval);
+    recargarAll();
 
 }

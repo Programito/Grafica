@@ -18,42 +18,45 @@
 
 <div class="container">
         <div class="row mt-2">
-                <div class="col-4">
+                <div class="col-xs-6 col-sm-3">
                     <input class="form-control" type="number" id="tempsInput" placeholder="Introdueix segons per carregar:">
                 </div>
-                <div class="col-4">
+                <div class="col-xs-6 col-sm-3">
                     <input class="form-control" type="number" id="tamanyInput" placeholder="Introdueix el % de tamany:">
                 </div>
-                <div class="col-2">
+                <div class="col-xs-6 col-sm-2">
                     <button onclick="modificarDades()" type="button"  class="btn btn-success">Modificar Dades</button>
                 </div>
-                <div class="col-2s">
+                <div class="col-xs-6 col-sm-2">
                     <button onclick="stop()" type="button" id="stopButton" class="btn btn-danger">Stop Recarga</button>
                 </div>
+                <div class="col-xs-6 col-sm-2">
+                    <button onclick="changeStyle()" type="button" id="styleButton" class="btn btn-dark text-white">Estil Dark Unica</button>
+                </div>
         </div>
-    <div class="row mt-2">
-        <div class="col-6">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 mt-2">
             <div id="container2"></div>
         </div>
-        <div class="col-6">
+        <div class="col-xs-12 col-sm-6 mt-2">
             <div id="container3"></div>
         </div>
-        <div class="col-6">
+        <div class="col-xs-12 col-sm-6  mt-2">
             <div id="container4"></div>
         </div>
-        <div class="col-6">
+        <div class="col-xs-12 col-sm-6 mt-2">
             <div id="container5"></div>
         </div>
     </div>
  
-    <div class="row mt-2">
-        <div class="col-6">
+    <div class="row mt-5">
+        <div class="col-xs-6 col-sm-6">
             <div id="container"></div>
         </div>
-        <div class="col-4">
+        <div class="col-xs-6 col-sm-4">
             <textarea id="textArea" class="form-control" cols="30" rows="20"></textarea>
         </div>
-        <div class="col-1">
+        <div class="col-xs-6 col-sm-1">
             <button onclick="recargar('container','freq')" type="button" class="btn btn-success mt-2">Recargar</button>
             <button onclick="modificar()" type="button" class="btn btn-primary mt-2">Modificar</button>
         </div>
